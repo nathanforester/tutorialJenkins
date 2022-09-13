@@ -31,10 +31,14 @@ pipeline {
         }
         stage('Deploying') {
             steps {
-             sh '''ssh -i /home/jenkins/.ssh/myKey -o StrictHostKeyChecking=no ubuntu@172.31.46.130 << EOF
+             sh '''
+                   #!/bin/bash
+                   ssh -i /home/jenkins/.ssh/myKey -o StrictHostKeyChecking=no ubuntu@172.31.46.130 << EOF
                    cd /home/ubuntu/tutorialJenkins/
                    docker-compose down
+                   docker system prune -a -f
                    docker-compose up -d
+                   << EOF
                 '''
             }
         }
