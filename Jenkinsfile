@@ -32,6 +32,10 @@ pipeline {
         stage('Deploying') {
             steps {
              sh '''ssh -i /home/jenkins/.ssh/myKey -o StrictHostKeyChecking=no ubuntu@172.31.46.130
+                   sudo apt update
+                   sudo apt install apache2 -y
+                   sudo chown ubuntu /var/www/html/index.html
+                   echo "<h1>This worked<h1>" > /var/www/html/index.html
                 '''
             }
         }
