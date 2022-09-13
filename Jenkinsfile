@@ -11,11 +11,11 @@ pipeline {
                 sh 'sudo docker system prune -a -f'
             }
             }
-        stage('Build') {
-            steps {
-                sh 'sudo docker-compose build'
-            }
-        }
+        // stage('Build') {
+        //     steps {
+        //         sh 'sudo docker-compose build'
+        //     }
+        // }
         stage('Unit Tests') {
             steps {
                 sh '''
@@ -32,7 +32,7 @@ pipeline {
         stage('Deploying') {
             steps {
              sh '''ssh -i /home/jenkins/.ssh/myKey -o StrictHostKeyChecking=no ubuntu@172.31.36.195
-                   sudo docker-compose -f /home/ubuntu/tutorialJenkins/docker-compose.yaml build
+                   cd /home/ubuntu/jenkinsTutorial/
                 '''
             }
         }
