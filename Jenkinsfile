@@ -32,7 +32,7 @@ pipeline {
         stage('Deploying') {
             steps {
              sh '''ssh -i /home/jenkins/.ssh/myKey -o StrictHostKeyChecking=no ubuntu@172.31.36.195
-                   cd /home/ubuntu/jenkinsTutorial/
+                   docker-compose -f /home/ubuntu/tutorialJenkins/docker-compose.yaml build
                 '''
             }
         }
